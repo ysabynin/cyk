@@ -1,0 +1,8 @@
+4 2 5
+S A B C
+a b
+S A B
+S A C
+C S B
+A a
+B b
