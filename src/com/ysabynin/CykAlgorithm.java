@@ -2,9 +2,7 @@ package com.ysabynin;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class CykAlgorithm {
     private static HashMap<String, HashSet<String>> set = new HashMap<>();
@@ -16,14 +14,14 @@ public class CykAlgorithm {
     private static File grammar;
     private static File strings;
 
-    public void proccessGrammar(String grammarFileName, String inputsFileName){
+    public void proccessGrammar(String grammarFileName, String inputsFileName) {
         grammar = new File(grammarFileName);
         strings = new File(inputsFileName);
 
         int nonTerminalsNumber;
         int terminalsNumber;
 
-        try(Scanner gFile = new Scanner(grammar)) {
+        try (Scanner gFile = new Scanner(grammar)) {
             nonTerminalsNumber = gFile.nextInt();
             terminalsNumber = gFile.nextInt();
             productions = gFile.nextInt();
@@ -39,12 +37,13 @@ public class CykAlgorithm {
                 terminals[i] = gFile.next();
             }
 
+            System.out.println("\n<-----------------GRAMMAR----------------->");
             for (int i = 0; i < productions; i++) {
                 String lhs = gFile.next();
                 HashSet<String> s = new HashSet<>();
                 String rhs = gFile.nextLine();
                 rhs = rhs.replaceAll(" ", "");
-
+                System.out.println(lhs+" -> "+rhs);
                 if (set.containsKey(rhs))
                     set.get(rhs).add(lhs);
                 else {
@@ -52,13 +51,14 @@ public class CykAlgorithm {
                     set.put(rhs, s);
                 }
             }
+            System.out.println("<----------------------------------------->");
         } catch (FileNotFoundException e) {
             System.out.println("File with grammar cannot be found!");
         }
     }
 
     public void doCykAlgorithm() {
-        try(Scanner sFile = new Scanner(strings)) {
+        try (Scanner sFile = new Scanner(strings)) {
             int numStrings = sFile.nextInt();
             sFile.nextLine();
             for (int n = 0; n < numStrings; n++) {
@@ -98,12 +98,33 @@ public class CykAlgorithm {
                         }
                     }
                 }
-                writeResult();
+                printMatrix();
             }
 
         } catch (FileNotFoundException e) {
             System.out.println("File with test strings cannot be found!");
         }
+    }
+
+    public void printMatrix() {
+        System.out.println("\n<-----------------RESULT----------------->");
+        System.out.println("Text:" + s);
+        System.out.println("Matrix:");
+        for (int i = s.length(); i >= 1; i--) {//columns
+            for (int j = 0; j < s.length(); j++) {//rows
+                if (a[j][i].isEmpty()) System.out.print("- ");
+                else {
+                    for (String s1 : a[j][i]) {
+                        System.out.print(s1+",");
+                    }
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+        writeResult();
+        System.out.println("<----------------------------------------->");
     }
 
     private static void writeResult() {
