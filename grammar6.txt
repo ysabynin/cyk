@@ -1,0 +1,24 @@
+11 4 20
+S A B C D E F I K M T
+( + ) *
+S EA
+S TB
+S n
+S DC
+E EA
+E TB
+E n
+E DC
+T TB
+T n
+T DC
+F n
+F DC
+A IT
+B KF
+C EM
+D (
+I +
+K *
+M )
+

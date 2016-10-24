@@ -1,0 +1,17 @@
+7 2 13
+S S1 A B C E I
+( )
+S CI
+S CA
+S CB
+S CE
+S1 CI
+S1 CA
+S1 CB
+S1 CE
+A ES
+B SE
+C (
+E )
+I SA
+

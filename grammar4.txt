@@ -1,0 +1,13 @@
+5 2 9
+S1 S A B D
+( )
+S BA
+S SS
+S BD
+S1 BA
+S1 SS
+S1 BD
+A SD
+B (
+D )
+
